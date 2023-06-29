@@ -24,21 +24,41 @@ class LineWindow(tk.Toplevel):
     
     def submit(self):
         if self.callback:
-            if validate_input(self.entry_length.get()) and validate_input(self.entry_width.get()) and validate_input(self.entry_distance.get()):
-                self.callback(float(self.entry_length.get()), float(self.entry_width.get()), float(self.entry_distance.get()))
+            length = validate_input(self.entry_length.get())
+            width = validate_input(self.entry_width.get())
+            distance = validate_input_0(self.entry_distance.get())
+            if length is not None and width is not None and distance is not None:
+                self.callback(length, width, distance)
                 self.destroy()
 
 def validate_input(input):
     try:
         val = float(input)
         if val > 0:
-            return True
+            return val
         else:
             messagebox.showerror("Erreur", "Veuillez entrer un nombre positif.")
-            return False
+            return None
     except ValueError:
         messagebox.showerror("Erreur", "Veuillez entrer un nombre valide.")
-        return False
+        return None
+
+
+def validate_input_0(input):
+    if input == "":
+        return 0.0
+    try:
+        val = float(input)
+        if val >= 0:
+            return val
+        else:
+            messagebox.showerror("Erreur", "Veuillez entrer un nombre positif.")
+            return None
+    except ValueError:
+        messagebox.showerror("Erreur", "Veuillez entrer un nombre valide.")
+        return None
+
+
 
 def n_light(lenght, widht, w):
     n = (lenght-w)/widht
@@ -71,11 +91,11 @@ lines = []
 summaries = []
 
 tk.Button(root, text="Ajouter une ligne", command=add_line).grid(row=0, column=0)
-tk.Button(root, text="Fin", command=calculate).grid(row=0, column=1)
+tk.Button(root, text="Total", command=calculate).grid(row=0, column=1)
 
-label_cable = tk.Label(root, text="")
+label_cable = tk.Label(root, text="", font=("Helvetica", 12, "bold"), fg="red")
 label_cable.grid(row=2, column=0, columnspan=2)
-label_luminaire = tk.Label(root, text="")
+label_luminaire = tk.Label(root, text="", font=("Helvetica", 12, "bold"), fg="red")
 label_luminaire.grid(row=3, column=0, columnspan=2)
 
 root.mainloop()
