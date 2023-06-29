@@ -24,5 +24,3 @@ Le code que nous avons écrit peut être visualisé en tant que "Grafcet" ou dia
    - Ces totaux sont affichés dans la fenêtre principale.
 
 6. L'application reste ouverte jusqu'à ce que l'utilisateur la ferme. 
-
-Cela représente un flux de travail typique pour l'application. N'hésitez pas à poser d'autres questions si vous avez besoin de plus de détails ou d'éclaircissements sur des parties spécifiques du code ou du flux de travail.
