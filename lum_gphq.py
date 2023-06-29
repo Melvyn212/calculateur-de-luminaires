@@ -47,23 +47,22 @@ def n_light(lenght, widht, w):
     l = sum(wire)
     return l, n
 
-def calculate(lines):
-    total_cable_length = sum(line[0] for line in lines)
-    total_luminaires = sum(line[1] for line in lines)
+def calculate():
+    total_cable_length = sum(line[3][0] for line in lines)
+    total_luminaires = sum(line[3][1] for line in lines)
     label_cable["text"] = "Longueur totale de câble pour les luminaires : " + str(total_cable_length) + " m"
     label_luminaire["text"] = "Nombre total de luminaires : " + str(total_luminaires)
 
 def add_line():
-    lines.append([0, 0])
     LineWindow(root, callback=update_line)
 
 def update_line(lenght, widht, w):
     line = n_light(lenght, widht, w)
-    lines[-1] = line
-    summary_text = f"Longueur du câble pour la ligne {len(lines)} : {line[0]} m\nNombre de luminaires pour la ligne {len(lines)} : {line[1]}"
+    lines.append([lenght, widht, w, line])
+    summary_text = f"Pour la ligne {len(lines)} :\nLongueur de ligne : {lenght} m, Espacement entre les luminaires : {widht} m, Distance sur laquelle les luminaires ne sont pas posés : {w} m\nLongueur du câble : {line[0]} m, Nombre de luminaires : {line[1]}"
     summaries.append(tk.Label(root, text=summary_text))
-    summaries[-1].grid(row=len(lines)+1, columnspan=2)
-    calculate(lines)
+    summaries[-1].grid(row=len(lines)+4, columnspan=2)
+
 
 root = tk.Tk()
 root.title("Calculateur de luminaires et de câbles")
@@ -71,9 +70,12 @@ root.title("Calculateur de luminaires et de câbles")
 lines = []
 summaries = []
 
-tk.Button(root, text="Ajouter une ligne", command=add_line).grid(row=0, columnspan=2)
+tk.Button(root, text="Ajouter une ligne", command=add_line).grid(row=0, column=0)
+tk.Button(root, text="Fin", command=calculate).grid(row=0, column=1)
 
 label_cable = tk.Label(root, text="")
+label_cable.grid(row=2, column=0, columnspan=2)
 label_luminaire = tk.Label(root, text="")
+label_luminaire.grid(row=3, column=0, columnspan=2)
 
 root.mainloop()
