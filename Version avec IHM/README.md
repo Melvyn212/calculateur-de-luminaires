@@ -1,26 +1,37 @@
-Pour lum_gphq.py
 
-Le code que nous avons écrit peut être visualisé en tant que "Grafcet" ou diagramme de flux comme suit :
+# Calculateur de luminaires et de câbles
 
-1. Initialisation de l'application :
-   - Créer une fenêtre principale.
-   - Ajouter des boutons "Ajouter une ligne" et "Fin" à la fenêtre principale.
-   - Initialiser une liste vide `lines` pour stocker les informations des lignes.
+Ce projet est un calculateur de luminaires et de câbles développé en utilisant Python et la bibliothèque Tkinter pour l'interface utilisateur.
 
-2. Lorsque l'utilisateur clique sur le bouton "Ajouter une ligne" :
-   - Une nouvelle fenêtre `LineWindow` s'ouvre.
-   - L'utilisateur peut saisir les détails de la ligne : longueur, espacement entre les luminaires et distance sur laquelle les luminaires ne sont pas posés.
-   - Lorsque l'utilisateur soumet les détails, les informations sont validées. Si les informations sont correctes, elles sont renvoyées à la fenêtre principale et la fenêtre `LineWindow` est fermée. Si les informations sont incorrectes, un message d'erreur s'affiche.
+L'application permet aux utilisateurs de spécifier les détails des lignes, y compris la longueur de la ligne, la distance entre les luminaires et la distance depuis l'armoire. En fonction de ces informations, l'application calcule la longueur totale du câble nécessaire et le nombre total de luminaires.
 
-3. Lorsque les détails de la ligne sont renvoyés à la fenêtre principale :
-   - La fonction `n_light` calcule la longueur du câble et le nombre de luminaires pour la ligne.
-   - Les détails de la ligne et les résultats des calculs sont ajoutés à la liste `lines`.
-   - Un résumé des détails et des résultats de la ligne est ajouté à la fenêtre principale.
+## Structure du code
 
-4. L'utilisateur peut ajouter autant de lignes qu'il le souhaite en répétant les étapes 2 et 3.
+Le code est organisé en plusieurs fichiers pour une meilleure lisibilité et modularité :
 
-5. Lorsque l'utilisateur a fini d'ajouter des lignes et clique sur le bouton "Fin" :
-   - La fonction `calculate_total` calcule la longueur totale du câble et le nombre total de luminaires à partir des informations de toutes les lignes dans la liste `lines`.
-   - Ces totaux sont affichés dans la fenêtre principale.
+- `main.py`: Le script principal qui lance l'application.
+- `lineapp.py`: Le fichier contenant la classe `LineApp`, qui représente l'application principale.
+- `line_window.py`: Le fichier contenant la classe `LineWindow`, qui représente la fenêtre de dialogue pour saisir les détails de chaque ligne.
 
-6. L'application reste ouverte jusqu'à ce que l'utilisateur la ferme. 
+
+
+## Utilisation
+
+1. Exécutez le script principal `main.py` pour lancer l'application :
+
+```
+python main.py
+```
+
+2. L'interface graphique de l'application s'ouvrira, vous permettant de saisir les détails des lignes et d'afficher les résultats.
+
+3. Pour chaque ligne, entrez la longueur de la ligne, la distance entre les luminaires et la distance depuis l'armoire en utilisant la fenêtre de dialogue.
+
+4. Une fois que vous avez ajouté toutes les lignes, vous pouvez afficher le schéma représentant la disposition des luminaires en cliquant sur le bouton "Afficher le schéma".
+
+5. Pour obtenir la longueur totale du câble nécessaire et le nombre total de luminaires, cliquez sur le bouton "Total".
+
+## Contribuer
+
+Les contributions sont les bienvenues ! Si vous souhaitez contribuer à ce projet, veuillez ouvrir une pull request expliquant les modifications proposées.
+
